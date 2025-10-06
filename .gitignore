@@ -1,0 +1,20 @@
+# IDE
+.idea/
+.vscode/
+
+# Python
+.venv/
+venv/
+*.pyc
+__pycache__/
+
+# Claude Code
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Reference files
+*.png
+!assets/**/*.png
