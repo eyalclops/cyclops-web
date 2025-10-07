@@ -347,6 +347,13 @@ body {
     opacity: 0.8;
 }
 
+.problems-closing {
+    font-size: 18px;
+    margin-top: 40px;
+    font-weight: 600;
+    opacity: 0.9;
+}
+
 .problems-visual {
     display: flex;
     justify-content: center;
@@ -484,7 +491,13 @@ body {
     font-size: 56px;
     font-weight: 800;
     line-height: 1.2;
+    margin-bottom: 24px;
+}
+
+.cta-subtitle {
+    font-size: 20px;
     margin-bottom: 40px;
+    opacity: 0.8;
 }
 
 .cta-visual {
