@@ -112,6 +112,53 @@ document.querySelectorAll('button').forEach(button => {
     });
 });
 
+// Get a demo button functionality - Open Google Form in iframe popup
+document.addEventListener('DOMContentLoaded', () => {
+    // Create modal HTML structure
+    const modalHTML = `
+        <div id="demo-modal" class="demo-modal">
+            <div class="demo-modal-overlay"></div>
+            <div class="demo-modal-content">
+                <button class="demo-modal-close">&times;</button>
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfTpHbHeDhrE0862BMPCGeuLKFO0koig1dTOVgRZkkNpuRkXw/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            </div>
+        </div>
+    `;
+
+    // Add modal to body
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+    const modal = document.getElementById('demo-modal');
+    const closeBtn = modal.querySelector('.demo-modal-close');
+    const overlay = modal.querySelector('.demo-modal-overlay');
+
+    // Open modal on button click
+    document.querySelectorAll('.btn-demo, .btn-primary').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        });
+    });
+
+    // Close modal
+    const closeModal = () => {
+        modal.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', closeModal);
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+});
+
 // Hamburger menu functionality
 document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.querySelector('.hamburger');
