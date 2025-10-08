@@ -944,14 +944,14 @@ body {
 
 .investors-list {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 40px;
     margin-top: 60px;
     align-items: center;
 }
 
 .investor-item img {
-    width: 100%;
+    width: 90%;
     height: auto;
     filter: none;
     opacity: 1;
