@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Add hover effect to benefit cards
 document.querySelectorAll('.benefit-card').forEach(card => {
     card.addEventListener('mouseenter', function() {
-        this.style.borderColor = '#FFD228';
+        this.style.borderColor = '#7C3AED';
     });
 
     card.addEventListener('mouseleave', function() {
