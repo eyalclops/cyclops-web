@@ -869,6 +869,7 @@ body {
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
     margin-top: 40px;
+    grid-auto-rows: 1fr;
 }
 
 .blog-card {
@@ -879,6 +880,7 @@ body {
     cursor: pointer;
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .blog-card:hover {
@@ -937,6 +939,8 @@ body {
 .blog-card-link {
     text-decoration: none;
     color: inherit;
+    display: flex;
+    height: 100%;
 }
 
 /* Blog Post Page Styles */
