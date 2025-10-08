@@ -91,6 +91,37 @@ body {
     opacity: 0.7;
 }
 
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.hamburger span {
+    width: 28px;
+    height: 3px;
+    background: var(--text-dark);
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
 .btn-demo {
     background: var(--white);
     border: 2px solid var(--text-dark);
@@ -615,8 +646,47 @@ body {
 
 @media (max-width: 768px) {
     .navbar .container {
+        position: relative;
+    }
+
+    .hamburger {
+        display: flex;
+        margin-left: auto;
+    }
+
+    .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--light-bg);
         flex-direction: column;
-        gap: 20px;
+        gap: 0;
+        margin: 0;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .nav-menu.active {
+        max-height: 400px;
+        padding: 20px 0;
+    }
+
+    .nav-link {
+        padding: 12px 60px;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .nav-cta {
+        display: none;
+    }
+
+    .nav-menu .btn-demo {
+        margin: 20px 60px 0;
+        width: calc(100% - 120px);
     }
 
     .hero-container,
@@ -802,14 +872,14 @@ body {
 
 .advisory-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
     margin-top: 60px;
 }
 
 .advisory-card {
     background: var(--light-bg);
-    padding: 32px;
+    padding: 24px;
     border-radius: 20px;
     text-align: center;
 }
@@ -1213,5 +1283,15 @@ body {
 @media (min-width: 769px) and (max-width: 1024px) {
     .blog-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .advisory-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .advisory-grid {
+        grid-template-columns: repeat(4, 1fr);
     }
 }
