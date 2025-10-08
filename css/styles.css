@@ -78,6 +78,10 @@ body {
     margin-right: 40px;
 }
 
+.nav-menu .btn-demo {
+    display: none;
+}
+
 .nav-link {
     text-decoration: none;
     color: var(--text-dark);
@@ -685,6 +689,7 @@ body {
     }
 
     .nav-menu .btn-demo {
+        display: block;
         margin: 20px 60px 0;
         width: calc(100% - 120px);
     }
