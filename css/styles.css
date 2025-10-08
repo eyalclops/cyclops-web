@@ -254,6 +254,10 @@ body {
     padding: 120px 0;
 }
 
+.feature-section.dark-bg {
+    background: #000000;
+}
+
 .feature-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -267,8 +271,8 @@ body {
 }
 
 .grid-pattern {
-    width: 100%;
-    max-width: 350px;
+    width: 120%;
+    max-width: 420px;
     height: auto;
     border-radius: 20px;
     object-fit: contain;
@@ -527,7 +531,7 @@ body {
 /* Bottom CTA Section */
 .bottom-cta-section {
     padding: 120px 0;
-    background: var(--white);
+    background: #000000;
     position: relative;
     overflow: hidden;
 }
@@ -546,11 +550,13 @@ body {
     font-weight: 800;
     line-height: 1.2;
     margin-bottom: 24px;
+    color: var(--white);
 }
 
 .cta-subtitle {
     font-size: 20px;
     margin-bottom: 40px;
+    color: var(--white);
     opacity: 0.8;
 }
 
@@ -558,9 +564,20 @@ body {
     position: relative;
     margin-top: 60px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    gap: 40px;
+}
+
+.cta-cyclops-video {
+    width: 50%;
+    max-width: 300px;
+    height: auto;
+    object-fit: contain;
+}
+
+.cta-button-wrapper {
+    text-align: center;
+    margin-top: 40px;
 }
 
 .tree-graphic {

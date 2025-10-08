@@ -180,4 +180,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Make balls colliding video play forward then reverse
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.querySelector('.grid-pattern');
+    if (video) {
+        video.removeAttribute('loop'); // Remove loop attribute
+        let playbackDirection = 1; // 1 for forward, -1 for reverse
+
+        video.addEventListener('ended', () => {
+            video.currentTime = video.duration;
+            playbackDirection = -1;
+            video.playbackRate = -1;
+            video.play();
+        });
+
+        video.addEventListener('timeupdate', () => {
+            if (playbackDirection === -1 && video.currentTime <= 0) {
+                video.currentTime = 0;
+                playbackDirection = 1;
+                video.playbackRate = 1;
+                video.play();
+            }
+        });
+    }
+});
+
 console.log('Landing page loaded successfully!');
