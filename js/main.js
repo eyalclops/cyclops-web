@@ -177,6 +177,10 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const f = e.currentTarget;
+        const submitBtn = f.querySelector('.lead-form-submit');
+
+        // Hide button immediately and show sending message
+        submitBtn.style.display = 'none';
         msg.textContent = "Sending…";
         msg.className = "lead-form-message loading";
 
@@ -193,6 +197,8 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (err) {
             msg.textContent = err.message || "Something went wrong.";
             msg.className = "lead-form-message error";
+            // Show button again on error so user can retry
+            submitBtn.style.display = '';
         }
     });
 
@@ -213,6 +219,9 @@ document.addEventListener('DOMContentLoaded', () => {
         msg.textContent = "";
         msg.className = "lead-form-message";
         form.reset();
+        // Show submit button again when modal reopens
+        const submitBtn = form.querySelector('.lead-form-submit');
+        submitBtn.style.display = '';
     };
 
     closeBtn.addEventListener('click', closeModal);
