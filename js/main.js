@@ -146,11 +146,16 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="demo-modal-overlay"></div>
             <div class="demo-modal-content">
                 <button class="demo-modal-close">&times;</button>
-                <h2 class="demo-modal-title">Get a Demo</h2>
+                <div class="demo-modal-header">
+                    <h2 class="demo-modal-title">Get a Demo</h2>
+                    <video class="demo-modal-video" autoplay loop muted playsinline>
+                        <source src="assets/images/purple cyclops.mp4" type="video/mp4">
+                    </video>
+                </div>
                 <form id="leadForm" class="lead-form">
-                    <input name="name" placeholder="Your name" required>
+                    <input name="name" placeholder="Name" required>
                     <input name="email" type="email" placeholder="Email" required>
-                    <input name="phone" placeholder="Phone (optional)">
+                    <input name="phone" placeholder="Phone">
                     <input type="text" name="company" style="display:none" tabindex="-1" autocomplete="off">
                     <button type="submit" class="lead-form-submit">Submit</button>
                     <div id="msg" class="lead-form-message"></div>
@@ -185,13 +190,6 @@ document.addEventListener('DOMContentLoaded', () => {
             msg.textContent = "Thanks! You're on the list.";
             msg.className = "lead-form-message success";
             f.reset();
-
-            // Close modal after 2 seconds
-            setTimeout(() => {
-                closeModal();
-                msg.textContent = "";
-                msg.className = "lead-form-message";
-            }, 2000);
         } catch (err) {
             msg.textContent = err.message || "Something went wrong.";
             msg.className = "lead-form-message error";
