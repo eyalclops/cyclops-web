@@ -610,7 +610,7 @@ body {
 
 /* Footer */
 .footer {
-    padding: 80px 0 40px;
+    padding: 80px 0 30px;
 }
 
 .footer-brand {
@@ -743,6 +743,30 @@ body {
 }
 
 @media (max-width: 768px) {
+    .footer-top {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .soc2-badge {
+        position: static;
+        transform: none;
+        margin-top: 20px;
+    }
+
+    .footer-contact {
+        position: static;
+        gap: 8px;
+        transform: none;
+    }
+
+    .footer-badges {
+        position: static;
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
     .navbar .container {
         position: relative;
     }
@@ -1305,6 +1329,96 @@ body {
     color: var(--yellow-primary);
 }
 
+.footer-top {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.soc2-badge {
+    height: 109px;
+    width: auto;
+    opacity: 0.9;
+    position: absolute;
+    left: 25%;
+    bottom: -74.5px;
+    transform: translateX(-50%);
+}
+
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    color: var(--white);
+    font-size: 14px;
+    opacity: 0.8;
+    position: absolute;
+    left: 0;
+    bottom: -60px;
+}
+
+.footer-contact p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+.footer-contact p:first-child {
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-contact a {
+    color: var(--white);
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.footer-contact a:hover {
+    opacity: 1;
+}
+
+.footer-aws {
+    position: absolute;
+    left: 78%;
+    bottom: -60px;
+    transform: translateX(-50%);
+}
+
+.footer-aws img {
+    height: 80px;
+    width: auto;
+    opacity: 0.9;
+    transition: opacity 0.3s;
+}
+
+.footer-aws a:hover img {
+    opacity: 1;
+}
+
+.aws-badge {
+    filter: brightness(0) invert(1);
+}
+
+.footer-linkedin {
+    position: absolute;
+    right: 0;
+    bottom: -45.5px;
+}
+
+.footer-linkedin img {
+    height: 51px;
+    width: auto;
+    opacity: 0.9;
+    transition: opacity 0.3s;
+}
+
+.footer-linkedin a:hover img {
+    opacity: 1;
+}
+
 .footer-links {
     text-align: center;
     margin-top: 20px;
@@ -1329,6 +1443,15 @@ body {
 .footer-separator {
     color: var(--white);
     opacity: 0.5;
+}
+
+.footer-copyright {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: var(--white);
+    font-size: 14px;
+    opacity: 0.6;
 }
 
 /* Responsive for About and Blog Pages */
