@@ -112,15 +112,49 @@ document.querySelectorAll('button').forEach(button => {
     });
 });
 
-// Get a demo button functionality - Open Google Form in iframe popup
+// Get a demo button functionality - Custom lead form
 document.addEventListener('DOMContentLoaded', () => {
+    const ENDPOINT = 'https://script.google.com/macros/s/AKfycbxBDV5depJZsJHOsAmSqJX7iQHWes48QHjv0iDp7py0MJ22Nvx1JnCnLaB9T0wo1uzV3w/exec';
+    const SECRET = 'web_1_2_3';
+    const ORIGIN = location.origin;
+
+    // Submit function
+    async function submitLead({ name, email, phone, company }) {
+        const payload = {
+            name: name.trim(),
+            email: email.trim(),
+            phone: (phone || "").trim(),
+            secret: SECRET,
+            origin: ORIGIN,
+            company: company || "" // honeypot must be empty
+        };
+
+        const res = await fetch(ENDPOINT, {
+            method: "POST",
+            headers: { "Content-Type": "text/plain;charset=utf-8" },
+            body: JSON.stringify(payload)
+        });
+
+        const json = await res.json().catch(() => ({}));
+        if (!json.ok) throw new Error(json.error || "Submission failed");
+        return true;
+    }
+
     // Create modal HTML structure
     const modalHTML = `
         <div id="demo-modal" class="demo-modal">
             <div class="demo-modal-overlay"></div>
             <div class="demo-modal-content">
                 <button class="demo-modal-close">&times;</button>
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfTpHbHeDhrE0862BMPCGeuLKFO0koig1dTOVgRZkkNpuRkXw/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                <h2 class="demo-modal-title">Get a Demo</h2>
+                <form id="leadForm" class="lead-form">
+                    <input name="name" placeholder="Your name" required>
+                    <input name="email" type="email" placeholder="Email" required>
+                    <input name="phone" placeholder="Phone (optional)">
+                    <input type="text" name="company" style="display:none" tabindex="-1" autocomplete="off">
+                    <button type="submit" class="lead-form-submit">Submit</button>
+                    <div id="msg" class="lead-form-message"></div>
+                </form>
             </div>
         </div>
     `;
@@ -131,6 +165,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('demo-modal');
     const closeBtn = modal.querySelector('.demo-modal-close');
     const overlay = modal.querySelector('.demo-modal-overlay');
+    const form = document.getElementById('leadForm');
+    const msg = document.getElementById('msg');
+
+    // Form submission handler
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const f = e.currentTarget;
+        msg.textContent = "Sending…";
+        msg.className = "lead-form-message loading";
+
+        try {
+            await submitLead({
+                name: f.name.value,
+                email: f.email.value,
+                phone: f.phone.value,
+                company: f.company.value
+            });
+            msg.textContent = "Thanks! You're on the list.";
+            msg.className = "lead-form-message success";
+            f.reset();
+
+            // Close modal after 2 seconds
+            setTimeout(() => {
+                closeModal();
+                msg.textContent = "";
+                msg.className = "lead-form-message";
+            }, 2000);
+        } catch (err) {
+            msg.textContent = err.message || "Something went wrong.";
+            msg.className = "lead-form-message error";
+        }
+    });
 
     // Open modal on button click
     document.querySelectorAll('.btn-demo, .btn-primary').forEach(button => {
@@ -138,14 +204,17 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             e.stopPropagation();
             modal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            document.body.style.overflow = 'hidden';
         });
     });
 
     // Close modal
     const closeModal = () => {
         modal.classList.remove('active');
-        document.body.style.overflow = ''; // Restore scrolling
+        document.body.style.overflow = '';
+        msg.textContent = "";
+        msg.className = "lead-form-message";
+        form.reset();
     };
 
     closeBtn.addEventListener('click', closeModal);
